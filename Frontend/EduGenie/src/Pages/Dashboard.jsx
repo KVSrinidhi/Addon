@@ -1,6 +1,8 @@
 import "./Dashboard.css";
 import { useState, useEffect } from "react";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function Dashboard() {
   const [metrics, setMetrics] = useState({
     pdfs_uploaded: 0,
@@ -12,7 +14,7 @@ function Dashboard() {
     
     let isMounted=true;
 
-    fetch("http://localhost:8000/analytics/metrics")
+    fetch(`${API_URL}/analytics/metrics')
       .then((res) => {
         if (!res.ok) throw new Error("Metrics offline");
         return res.json();
