@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { showToast } from "./Toast";
 import "./Summaries.css";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function Summaries() {
   const { documents } = useOutletContext();
 
@@ -38,7 +40,7 @@ function Summaries() {
     setSummaryResult(null);
 
     try {
-      const response = await fetch("http://localhost:8000/summarize", {
+      const response = await fetch(`${API_URL}/summarize`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
