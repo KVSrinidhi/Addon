@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { showToast } from "./Toast";
 import "./Chat.css"; // Ensure you style this according to your design system
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function Chat() {
   const { documents } = useOutletContext();
 
@@ -39,7 +41,7 @@ function Chat() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
