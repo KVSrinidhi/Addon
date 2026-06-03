@@ -15,9 +15,14 @@ from storage import pdf_store
 
 app = FastAPI(title="PDF Learning API", version="1.0.0")
 
+origins = [
+    "http://localhost:5173",  # For local development
+    "https://your-frontend-domain.up.railway.app"  # Your Railway frontend URL
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict in production
+    allow_origins=origins,  # Or use ["*"] to allow all domains temporarily during testing
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
