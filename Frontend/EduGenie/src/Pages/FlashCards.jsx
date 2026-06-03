@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { showToast } from "./Toast";
 import "./Flashcards.css";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function Flashcards() {
   const { documents } = useOutletContext();
   const [selectedDocId, setSelectedDocId] = useState("");
@@ -30,7 +32,7 @@ function Flashcards() {
     setIsFlipped(false);
 
     try {
-      const response = await fetch("http://localhost:8000/flashcards", {
+      const response = await fetch(`${API_URL}/flashcards', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ doc_id: selectedDocId }),
