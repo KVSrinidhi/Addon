@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { showToast } from "./Toast";
 import "./QuizGenerator.css";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function QuizGenerator() {
   const { documents } = useOutletContext();
 
@@ -38,7 +40,7 @@ function QuizGenerator() {
     setQuestions([]);
 
     try {
-      const response = await fetch("http://localhost:8000/mcq", {
+      const response = await fetch(`${API_URL}/mcq`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
