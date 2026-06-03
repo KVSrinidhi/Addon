@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom"; // Hook to access shared La
 import { showToast } from "./Toast";
 import "./Documents.css";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 function formatFileSize(bytes) {
   if (bytes < 1024) return bytes + " B";
   if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
@@ -71,7 +73,7 @@ function Documents() {
       formData.append("file", file);
 
       try {
-        const response = await fetch("http://localhost:8000/upload", {
+        const response = await fetch(`${API_URL}/upload`, {
           method: "POST",
           body: formData,
         });
